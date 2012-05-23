@@ -5,6 +5,6 @@ CACHE=$2
 
 # This is probably the wrong way, but whatever. Heroku buildpacks are
 # deliriously confusing.
-wget -O $CACHE/Makefile https://raw.github.com/jordansissel/heroku-buildpack-varnish/master/lib/Makefile
+curl -o $CACHE/Makefile https://raw.github.com/jordansissel/heroku-buildpack-varnish/master/lib/Makefile
 
 make -f $CACHE/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
