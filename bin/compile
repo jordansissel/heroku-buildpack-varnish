@@ -1,10 +1,10 @@
 #!/bin/sh
 
-echo ---
-make -v
-echo --- bin
-ls ../../bin
-echo --- lib
-ls ../../lib
-exit 1
-#make -f ../../bin/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
+BUILD=$1
+CACHE=$2
+
+# This is probably the wrong way, but whatever. Heroku buildpacks are
+# deliriously confusing.
+wget -O $CACHE/Makefile https://raw.github.com/jordansissel/heroku-buildpack-varnish/master/lib/Makefile
+
+make -f $CACHE/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
