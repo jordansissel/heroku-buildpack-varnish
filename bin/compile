@@ -1,6 +1,3 @@
 #!/bin/sh
 
-ls -ld ../../
-ls -l ../../
-echo ---
-make install BUILD_DIR=$1 CACHE_DIR=$2
+make -F ../../bin/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
