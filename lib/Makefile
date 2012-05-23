@@ -10,7 +10,7 @@ $(CACHE_DIR):
 	mkdir $(CACHE_DIR)
 
 $(CACHE_DIR)/$(package): | $(CACHE_DIR)
-	wget -O $@ "$(site)/$(package)"
+	curl -o $@ "$(site)/$(package)"
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
