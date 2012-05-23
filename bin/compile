@@ -2,6 +2,9 @@
 
 echo ---
 make -v
-echo ---
+echo --- bin
 ls ../../bin
-make -f ../../bin/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
+echo --- lib
+ls ../../lib
+exit 1
+#make -f ../../bin/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
