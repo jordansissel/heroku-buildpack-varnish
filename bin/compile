@@ -1,3 +1,7 @@
 #!/bin/sh
 
+echo pwd
+pwd
+ls
+echo ---
 make install BUILD_DIR=$1 CACHE_DIR=$2
