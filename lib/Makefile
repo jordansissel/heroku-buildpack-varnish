@@ -20,9 +20,12 @@ $(workdir): $(CACHE_DIR)/$(package) | $(BUILD_DIR)
 
 .PHONY: configure
 configure: | $(workdir) libpcre
-	cd $(workdir); ./configure --prefix=$(BUILD_DIR) \
-		--without-rst2man --without-rst2html \
-		--with-pcre-config=$(BUILD_DIR)/bin/pcre-config
+	-echo "PCRECONFIG: "; ls -ld $(BUILD_DIR)/bin/pcre-config
+	cd $(workdir); \
+		env PCRE_CFLAGS=-I$(BUILD_DIR)/include PCRE_LIBS="-lpcre -L$(BUILD_DIR)/lib" \
+		  ./configure --prefix=$(BUILD_DIR) \
+		    --without-rst2man --without-rst2html \
+		    --with-pcre-config=$(BUILD_DIR)/bin/pcre-config
 
 .PHONY: compile
 compile: | configure
