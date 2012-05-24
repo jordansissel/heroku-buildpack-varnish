@@ -1,7 +1,7 @@
-site=http://err.no/tmp
-version=3.0.3~pre20120523
-package=varnish-$(version).tar.gz
-workdir=$(CACHE_DIR)/varnish-$(version)
+site=ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre
+version=8.30
+package=pcre-$(version).tar.gz
+workdir=$(CACHE_DIR)/pcre-$(version)
 
 .PHONY: default
 default: install
@@ -19,10 +19,8 @@ $(workdir): $(CACHE_DIR)/$(package) | $(BUILD_DIR)
 	tar -C $(dir $@) -zxf "$<"
 
 .PHONY: configure
-configure: | $(workdir) libpcre
-	cd $(workdir); ./configure --prefix=$(BUILD_DIR) \
-		--without-rst2man --without-rst2html \
-		--with-pcre-config=$(BUILD_DIR)/bin/pcre-config
+configure: | $(workdir)
+	cd $(workdir); ./configure --prefix=$(BUILD_DIR)
 
 .PHONY: compile
 compile: | configure
@@ -31,6 +29,3 @@ compile: | configure
 .PHONY: install
 install: | compile
 	make -C $(workdir) install
-
-libpcre: 
-	make -f Makefile.pcre install BUILD_DIR=$(BUILD_DIR) CACHE_DIR=$(CACHE_DIR)

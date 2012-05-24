@@ -7,5 +7,6 @@ CACHE=$2
 # deliriously confusing.
 [ ! -d $CACHE ] && mkdir -p $CACHE
 curl -o $CACHE/Makefile https://raw.github.com/jordansissel/heroku-buildpack-varnish/master/lib/Makefile
+curl -o $CACHE/Makefile.pcre https://raw.github.com/jordansissel/heroku-buildpack-varnish/master/lib/Makefile.pcre
 
-make -f $CACHE/Makefile install BUILD_DIR=$1 CACHE_DIR=$2
+make -C $CACHE Makefile install BUILD_DIR=$1 CACHE_DIR=$2
